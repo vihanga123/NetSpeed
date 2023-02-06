@@ -1,67 +1,29 @@
-import java.awt.*;
-import java.awt.event.*;
-public class Main extends Frame {
-    private Label lblCount;    // Declare a Label component
-    private TextField tfCount; // Declare a TextField component
-    private Label lblCount2;
-    private Button btnCount;   // Declare a Button component
-    private int count = 0;     // Counter's value
+package oshi;
 
-    // Constructor to setup GUI components and event handlers
-    public Main () {
-        setLayout(new FlowLayout());
-        // "super" Frame, which is a Container, sets its layout to FlowLayout to arrange
-        // the components from left-to-right, and flow to next row from top-to-bottom.
+import oshi.hardware.CentralProcessor;
+import oshi.hardware.HardwareAbstractionLayer;
 
-        lblCount = new Label("Counter");  // construct the Label component
-        add(lblCount);                    // "super" Frame container adds Label component
-        lblCount2 = new Label("Counter2");
-        add(lblCount2);
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.*;
 
-        tfCount = new TextField(count + "", 10); // construct the TextField component with initial text
-        tfCount.setEditable(false);       // set to read-only
-        add(tfCount);                     // "super" Frame container adds TextField component
 
-        btnCount = new Button("Count");   // construct the Button component
-        add(btnCount);                    // "super" Frame container adds Button component
+public class SystemInfoTest {
 
-        BtnCountListener listener = new BtnCountListener();
-        btnCount.addActionListener(listener);
-        // "btnCount" is the source object that fires an ActionEvent when clicked.
-        // The source object adds an instance of BtnCountListener as an ActionEvent listener,
-        //   which provides an ActionEvent handler called actionPerformed().
-        // Clicking "Count" button calls back actionPerformed().
+    private JFrame mainFrame;
+    private JButton jmenu;
 
-        setTitle("AWT Counter");  // "super" Frame sets its title
-        setSize(300, 100);        // "super" Frame sets its initial window size
+    private SystemInfo si = new SystemInfo();
 
-        // For inspecting the Container/Components objects
-        // System.out.println(this);
-        // System.out.println(lblCount);
-        // System.out.println(tfCount);
-        // System.out.println(btnCount);
-        setVisible(true);         // "super" Frame shows
-        // System.out.println(this);
-        // System.out.println(lblCount);
-        // System.out.println(tfCount);
-        // System.out.println(btnCount);
-    }
-
-    // The entry main() method
     public static void main(String[] args) {
-        // Invoke the constructor to setup the GUI, by allocating an instance
-        Main app = new Main();
-        // or simply "new AWTCounter();" for an anonymous instance
-    }
 
-    // Define an inner class to handle the "Count" button-click
-    private class BtnCountListener implements ActionListener {
-        // ActionEvent handler - Called back upon button-click.
-        @Override
-        public void actionPerformed(ActionEvent evt) {
-            ++count; // Increase the counter value
-            // Display the counter value on the TextField tfCount
-            tfCount.setText(count + ""); // Convert int to String
-        }
-    }
-}
+        JFrame j= new JFrame();
+        JTextField txt1 = new JTextField();
+        add(java.awt.TrayIcon);
+        txt1.setBounds(120,150,120,40);
+        JButton b = new JButton("click");
+        b.setBounds(130,200,100,40);
+        j.add(b);
+        j.add(txt1);
+        j.setSize(400,500);
+        j.setLayout(null);
+        j.setVisible(true);
