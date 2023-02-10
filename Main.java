@@ -26,6 +26,29 @@ public class Main extends Frame {
         CentralProcessor cpu = hal.getProcessor();
         Sensors sensors = hal.getSensors();
 
+
+        PopupMenu popup = new PopupMenu(); //taskbar popup menu
+
+
+        MenuItem CPUTem = new MenuItem(Double.toString(sensors.getCpuTemperature()));
+        CheckboxMenuItem cb1 = new CheckboxMenuItem("tooltip");
+        MenuItem error = new MenuItem("Error");
+
+        popup.add(CPUTem);
+        popup.add(cb1);
+        popup.add(error);
+
+        TrayIcon trayIcon = new TrayIcon(Toolkit.getDefaultToolkit().getImage("C:/Users/vihan/IdeaProjects/Java/src/download.png"), "Tray Popup Menu", popup);
+        SystemTray tray = SystemTray.getSystemTray();
+        try {
+            tray.add(trayIcon);
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+        trayIcon.setPopupMenu(popup);
+
+
+
         setLayout(new FlowLayout());
 
         LabelCPUtemp = new Label("CPU Temp");
