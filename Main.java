@@ -40,8 +40,6 @@ public class Main  {
         Stack<Double> set = new Stack();
 
 
-
-
         TrayIcon trayIcon = new TrayIcon(Toolkit.getDefaultToolkit().getImage("C:/Users/vihan/IdeaProjects/Java/src/download.png"), "Tray Popup Menu", popup);
         SystemTray tray = SystemTray.getSystemTray();
         try {
@@ -52,26 +50,26 @@ public class Main  {
         trayIcon.setPopupMenu(popup);
 
         //Frame
-        JFrame frame = new JFrame();
+
+        JTabbedPane tab = new JTabbedPane();
         JPanel CPU = new JPanel();
-        JTabbedPane CPUtab = new JTabbedPane();
         LabelCPUtemp = new Label("CPU Temp");
         //add(LabelCPUtemp);
         CPUTemp = new TextField(hal.getSensors().toString()); //Arrays.toString(sensors.getFanSpeeds()
         CPUTemp.setEditable(false);
         //add(CPUTemp);
-        NetInfo = new TextField();
-        NetInfo.setEditable(false);
         //add(NetInfo);
         refreshBtn = new Button("Refresh");
-        //add(refreshBtn);
+        tab.addTab("CPU",CPU);
+
+
         CPU.add(LabelCPUtemp);
         CPU.add(CPUTemp);
-        CPU.add(NetInfo);
         CPU.add(refreshBtn);
-        CPUtab.addTab("CPU",CPU);
+
+        JFrame frame = new JFrame();
         frame.setSize(500,200);
-        frame.add(CPU,BorderLayout.CENTER);
+        frame.add(tab,BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
@@ -81,7 +79,7 @@ public class Main  {
         JTextField textField2 = new JTextField(20);
         Sensor.add(label2, BorderLayout.NORTH);
         Sensor.add(textField2, BorderLayout.SOUTH);
-        CPUtab.addTab("Sensor", Sensor);
+        tab.addTab("Sensor", Sensor);
 
         //Popup menu
         MenuItem CPUTem = new MenuItem(Double.toString(sensors.getCpuTemperature()));
