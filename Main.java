@@ -42,11 +42,18 @@ public class Main  {
 
         MenuItem CPUTem = new MenuItem(Double.toString(sensors.getCpuTemperature()));
         CheckboxMenuItem cb1 = new CheckboxMenuItem("tooltip");
-        MenuItem error = new MenuItem("Error");
+        MenuItem exit = new MenuItem("Exit");
 
         popup.add(CPUTem);
         popup.add(cb1);
-        popup.add(error);
+        popup.add(exit).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+
 
         TrayIcon trayIcon = new TrayIcon(Toolkit.getDefaultToolkit().getImage("C:/Users/vihan/IdeaProjects/Java/src/download.png"), "Tray Popup Menu", popup);
         SystemTray tray = SystemTray.getSystemTray();
