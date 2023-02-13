@@ -40,19 +40,6 @@ public class Main  {
         Stack<Double> set = new Stack();
 
 
-        MenuItem CPUTem = new MenuItem(Double.toString(sensors.getCpuTemperature()));
-        CheckboxMenuItem cb1 = new CheckboxMenuItem("tooltip");
-        MenuItem exit = new MenuItem("Exit");
-
-        popup.add(CPUTem);
-        popup.add(cb1);
-        popup.add(exit).addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-
 
 
         TrayIcon trayIcon = new TrayIcon(Toolkit.getDefaultToolkit().getImage("C:/Users/vihan/IdeaProjects/Java/src/download.png"), "Tray Popup Menu", popup);
@@ -64,7 +51,7 @@ public class Main  {
         }
         trayIcon.setPopupMenu(popup);
 
-
+        //Frame
         JFrame frame = new JFrame();
         JPanel CPU = new JPanel();
         JTabbedPane CPUtab = new JTabbedPane();
@@ -96,7 +83,27 @@ public class Main  {
         Sensor.add(textField2, BorderLayout.SOUTH);
         CPUtab.addTab("Sensor", Sensor);
 
+        //Popup menu
+        MenuItem CPUTem = new MenuItem(Double.toString(sensors.getCpuTemperature()));
+        MenuItem restore = new MenuItem("Restore");
+        MenuItem exit = new MenuItem("Exit");
 
+        popup.add(CPUTem);
+
+        popup.add(exit).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        popup.add(restore).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setExtendedState(JFrame.NORMAL);
+
+            }
+        });
 
 
 
@@ -113,6 +120,4 @@ public class Main  {
     }
 
 }
-
-
 
