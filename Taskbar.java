@@ -1,44 +1,29 @@
-import java.awt.SystemTray*;
-public class Taskbar {
-    //Check the SystemTray is supported
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.TrayIcon.*;
+
+public class TrayPopupMenu {
+    public static void main(String[] args) throws AWTException {
+        // Check if the system supports tray icons
         if (!SystemTray.isSupported()) {
-        System.out.println("SystemTray is not supported");
-        return;
-    }
-    final PopupMenu popup = new PopupMenu();
-    final TrayIcon trayIcon =
-            new TrayIcon(createImage("images/bulb.gif", "tray icon"));
-    final SystemTray tray = SystemTray.getSystemTray();
+            System.out.println("System tray is not supported on this platform");
+            return;
+        }
 
-    // Create a pop-up menu components
-    MenuItem aboutItem = new MenuItem("About");
-    CheckboxMenuItem cb1 = new CheckboxMenuItem("Set auto size");
-    CheckboxMenuItem cb2 = new CheckboxMenuItem("Set tooltip");
-    Menu displayMenu = new Menu("Display");
-    MenuItem errorItem = new MenuItem("Error");
-    MenuItem warningItem = new MenuItem("Warning");
-    MenuItem infoItem = new MenuItem("Info");
-    MenuItem noneItem = new MenuItem("None");
-    MenuItem exitItem = new MenuItem("Exit");
+        // Create a popup menu
+        PopupMenu popup = new PopupMenu();
+        MenuItem item = new MenuItem("Exit");
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        popup.add(item);
 
-    //Add components to pop-up menu
-        popup.add(aboutItem);
-        popup.addSeparator();
-        popup.add(cb1);
-        popup.add(cb2);
-        popup.addSeparator();
-        popup.add(displayMenu);
-        displayMenu.add(errorItem);
-        displayMenu.add(warningItem);
-        displayMenu.add(infoItem);
-        displayMenu.add(noneItem);
-        popup.add(exitItem);
-
-        trayIcon.setPopupMenu(popup);
-
-        try {
+        // Create a tray icon and add it to the system tray
+        TrayIcon trayIcon = new TrayIcon(Toolkit.getDefaultToolkit().getImage("icon.png"), "Tray Popup Menu", popup);
+        SystemTray tray = SystemTray.getSystemTray();
         tray.add(trayIcon);
-    } catch (AWTException e) {
-        System.out.println("TrayIcon could not be added.");
     }
 }
