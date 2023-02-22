@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.TrayIcon.*;
 
-public class TrayPopupMenu {
+public class Taskbar {
     public static void main(String[] args) throws AWTException {
         // Check if the system supports tray icons
         if (!SystemTray.isSupported()) {
