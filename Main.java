@@ -75,7 +75,13 @@ public class Main  {
 
         JPanel Sensor = new JPanel();
         Sensor.setLayout(new BorderLayout());
-        JLabel label2 = new JLabel("This is Label 2");
+        JLabel label2 = new JLabel("CPU Threads");
+        try {
+            label2.setText(label2.getText() + ": " + cpu.());
+        }
+        catch (Exception e){
+            System.out.println("test");
+        }
         JTextField textField2 = new JTextField(20);
         Sensor.add(label2, BorderLayout.NORTH);
         Sensor.add(textField2, BorderLayout.SOUTH);
